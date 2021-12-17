@@ -5,7 +5,7 @@ let posX = 3,
 function setup() {
 	createCanvas(VAR_CANVA.ancho + 200, VAR_CANVA.alto + 200);
 	tablero = createQuadrille(VAR_MATH.columnas, VAR_MATH.filas);
-	figura = createQuadrille(4, 4);
+	figura = new Figura();
 }
 
 function draw() {
@@ -13,15 +13,8 @@ function draw() {
 
 	drawQuadrille(tablero, {
 		cellLength: VAR_MATH.tamanoCeldas,
-		outline: "black",
+		outline: VAR_CANVA.borde,
 		board: true,
 	});
-
-	drawQuadrille(figura, {
-		x: posX,
-		y: posY,
-		cellLength: VAR_MATH.tamanoCeldas,
-		outline: "magenta",
-		board: true,
-	});
+	figura.dibujar();
 }
