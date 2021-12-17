@@ -18,6 +18,7 @@
 .ionide
 
 temp/
+Others/
 
 # Json files
 Others/jsconfig.json
