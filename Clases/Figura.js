@@ -40,8 +40,7 @@ class Figura extends Tetromino {
 			x: this.xPos,
 			y: this.yPos,
 			cellLength: VAR_MATH.tamanoCeldas,
-			outline: VAR_CANVA.borde,
-			board: true,
+			outline: VAR_CANVA.bordeFigura,
 		});
 	}
 

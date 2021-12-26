@@ -13,7 +13,7 @@ function draw() {
 
 	drawQuadrille(tablero, {
 		cellLength: VAR_MATH.tamanoCeldas,
-		outline: "black",
+		outline: VAR_CANVA.bordeTablero,
 		board: true,
 	});
 	figura.dibujar();

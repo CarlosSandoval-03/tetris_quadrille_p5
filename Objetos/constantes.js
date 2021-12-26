@@ -8,7 +8,8 @@ const VAR_CANVA = {
 	ancho: VAR_MATH.columnas * VAR_MATH.tamanoCeldas,
 	alto: VAR_MATH.filas * VAR_MATH.tamanoCeldas,
 	color: [40, 40, 40].slice(),
-	borde: "#000",
+	bordeTablero: "black",
+	bordeFigura: "white",
 };
 
 const COORDENADA = {
