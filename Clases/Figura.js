@@ -22,14 +22,16 @@ class Figura extends Tetromino {
 			y: this._yPos,
 			cellLength: VAR_MATH.tamanoCeldas,
 			outline: VAR_CANVA.borde,
+			board: true,
 		});
 	}
 
 	__fueraTablero() {
+		const indicesTablero = VAR_MATH.columnas + 1;
 		if (
 			this._xPos < 0 ||
-			this._xPos >= VAR_MATH.columnas + 1 - super.anchoMatriz ||
-			this._yPos >= VAR_MATH.filas + 1 - super.altoMatriz
+			this._xPos >= indicesTablero - super.anchoMatriz ||
+			this._yPos >= indicesTablero - super.altoMatriz
 		) {
 			return true;
 		}
@@ -59,12 +61,35 @@ class Figura extends Tetromino {
 	}
 	__arriba() {
 		this._yPos--;
-		// this.__crearNuevo();
+		this.__crearNuevo();
 	}
 	abajo() {
 		this._yPos++;
 		if (!this.__verificacionPosicionValida()) {
 			this.__arriba();
+		}
+	}
+	// Nuevos valores para el control de bordes
+	__rotacionMatematica() {
+		let temp = this.__figuraEnJuego.toMatrix();
+		super.anchoMatriz = obtenerAnchoMatriz(temp);
+		super.altoMatriz = obtenerAltoMatriz(temp);
+	}
+	rotacionIzquierda() {
+		this.__figuraEnJuego.rotate();
+		this.__rotacionMatematica();
+
+		if (!this.__verificacionPosicionValida()) {
+			this.rotacionDerecha();
+		}
+	}
+	rotacionDerecha() {
+		for (let i = 0; i < 3; i++) {
+			this.__figuraEnJuego.rotate();
+		}
+		this.__rotacionMatematica();
+		if (!this.__verificacionPosicionValida()) {
+			this.rotacionIzquierda();
 		}
 	}
 }
