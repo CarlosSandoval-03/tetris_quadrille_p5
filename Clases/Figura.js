@@ -56,6 +56,19 @@ class Figura extends Tetromino {
 		return false;
 	}
 	__colision() {
+		let posicion = {
+			y: this.yPos,
+			x: this.xPos,
+		};
+		let matrizComparativa = comparacionPieza(this.figuraEnJuego, posicion);
+
+		for (let fila of matrizComparativa) {
+			for (let valor of fila) {
+				if (valor != 0) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	__verificacionPosicionValida() {
