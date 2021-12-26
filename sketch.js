@@ -34,6 +34,6 @@ function keyPressed() {
 	} else if (keyIsDown(Z_KEY)) {
 		figura.rotacionIzquierda();
 	} else if (keyIsDown(SPACE_KEY)) {
-		console.log("En construccion: Hard Drop");
+		figura.hardDrop();
 	}
 }
