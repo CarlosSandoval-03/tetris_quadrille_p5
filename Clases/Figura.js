@@ -80,6 +80,7 @@ class Figura extends Tetromino {
 	}
 	__arriba() {
 		this.yPos--;
+		this.__almacenarPieza();
 		this.__crearNuevo();
 	}
 	abajo() {
@@ -116,5 +117,9 @@ class Figura extends Tetromino {
 		if (!this.__verificacionPosicionValida()) {
 			this.rotacionIzquierda();
 		}
+	}
+
+	__almacenarPieza() {
+		guardadoPieza(this.figuraEnJuego, { y: this.yPos, x: this.xPos });
 	}
 }
