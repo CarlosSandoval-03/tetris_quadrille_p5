@@ -27,11 +27,11 @@ class Figura extends Tetromino {
 	}
 
 	__fueraTablero() {
-		const indicesTablero = VAR_MATH.columnas + 1;
+		const indicesTablero = [VAR_MATH.columnas + 1, VAR_MATH.filas + 1];
 		if (
 			this._xPos < 0 ||
-			this._xPos >= indicesTablero - super.anchoMatriz ||
-			this._yPos >= indicesTablero - super.altoMatriz
+			this._xPos >= indicesTablero[0] - super.anchoMatriz ||
+			this._yPos >= indicesTablero[1] - super.altoMatriz
 		) {
 			return true;
 		}
@@ -61,7 +61,7 @@ class Figura extends Tetromino {
 	}
 	__arriba() {
 		this._yPos--;
-		this.__crearNuevo();
+		// this.__crearNuevo();
 	}
 	abajo() {
 		this._yPos++;
