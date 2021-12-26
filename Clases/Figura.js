@@ -61,7 +61,7 @@ class Figura extends Tetromino {
 	}
 	__arriba() {
 		this._yPos--;
-		// this.__crearNuevo();
+		this.__crearNuevo();
 	}
 	abajo() {
 		this._yPos++;
@@ -69,16 +69,15 @@ class Figura extends Tetromino {
 			this.__arriba();
 		}
 	}
-	// Nuevos valores para el control de bordes
-	__rotacionMatematica() {
+
+	__actualizacionTamanoMatriz() {
 		let temp = this.__figuraEnJuego.toMatrix();
 		super.anchoMatriz = obtenerAnchoMatriz(temp);
 		super.altoMatriz = obtenerAltoMatriz(temp);
 	}
 	rotacionIzquierda() {
 		this.__figuraEnJuego.rotate();
-		this.__rotacionMatematica();
-
+		this.__actualizacionTamanoMatriz();
 		if (!this.__verificacionPosicionValida()) {
 			this.rotacionDerecha();
 		}
@@ -87,7 +86,7 @@ class Figura extends Tetromino {
 		for (let i = 0; i < 3; i++) {
 			this.__figuraEnJuego.rotate();
 		}
-		this.__rotacionMatematica();
+		this.__actualizacionTamanoMatriz();
 		if (!this.__verificacionPosicionValida()) {
 			this.rotacionIzquierda();
 		}
