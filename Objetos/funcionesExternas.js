@@ -3,3 +3,13 @@
 function numeroAleatorioEntero(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
+
+function obtenerAltoMatriz(matriz = []) {
+	return matriz.length;
+}
+
+function obtenerAnchoMatriz(matriz = []) {
+	for (fila in matriz) {
+		return matriz[fila].length;
+	}
+}
