@@ -1,9 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+:root {
+	--gradiente-arcade: radial-gradient(ellipse at bottom, #6d028d, #0c1747);
+	--borde-arcade: linear-gradient(
+		45deg,
+		rgba(6, 6, 7, 1) 0%,
+		rgba(108, 107, 112, 1) 50%,
+		rgba(20, 20, 20, 1) 100%
+	);
+	--titulo: #ef217d;
+	--base-color: #321652;
+}
+/* https://www.youtube.com/watch?v=nq0vAO6SDlI */
+#contenedor_carga {
+	background-color: rgba(250, 240, 245, 0.9);
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	transition: all 1s ease;
+	z-index: 10000;
+}
+
+#carga {
+	border: 15px solid #ccc;
+	border-top-color: #f4266a;
+	border-top-style: groove;
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	/* centrado en pantalla */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	/* animacion */
+	animation: girar 1.5s linear infinite;
+}
+
+@keyframes girar {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Base */
 html,
 body {
+	font-family: "Press Start 2P", cursive;
+	background-color: var(--base-color);
 	margin: 0;
 	padding: 0;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+/* Cabezera Generalidades */
+.gameHeader {
+	display: flex;
+	justify-content: center;
+	background: var(--gradiente-arcade), #0c1747;
+	padding: 1.5em;
+}
+
+/* Cabezera del Arcade */
+.title {
+	font-size: 3.5em;
+	letter-spacing: 1em;
+	color: var(--titulo);
+
+	/* Animacion Titulo */
+	animation-name: titulo-beat;
+	animation-duration: 3s;
+	animation-iteration-count: 1;
+}
+
+/* Animacion de beat para el titulo */
+@keyframes titulo-beat {
+	0% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/* Ventana Principal del Canva */
+.screen {
+	display: flex;
+	justify-content: space-between;
+	background-color: rgb(10, 10, 10);
+
+	/* Animacion Fade Datos */
+	animation-name: fadeIn;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.borde-lateral {
+	background: var(--borde-arcade);
+	padding: 1em;
 }
 
 canvas {
-	display: block;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+footer {
+	display: flex;
+	justify-content: center;
+	background-color: #6d028d;
+	color: #fff;
+}
+
+.text-footer {
+	color: #fff;
+}
+
+.link {
+	color: #fff;
+	text-decoration: underline;
 }

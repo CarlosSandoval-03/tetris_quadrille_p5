@@ -12,3 +12,4 @@ A tetris without object-oriented must be developed, it is to visualize the diffi
 2. https://objetos.github.io/p5.quadrille.js/docs/demo
 3. https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 4. https://github.com/andersontr15/clean-code-javascript-es
+5. https://www.youtube.com/watch?v=nq0vAO6SDlI

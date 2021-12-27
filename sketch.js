@@ -3,7 +3,11 @@ let posX = 3,
 	posY = 4;
 
 function setup() {
-	createCanvas(VAR_CANVA.ancho + 200, VAR_CANVA.alto + 200);
+	let canva = createCanvas(VAR_CANVA.ancho, VAR_CANVA.alto);
+	canva.id("mainGame");
+	canva.class("gameWindow");
+	select(".canvas-box").child(canva);
+
 	tablero = createQuadrille(VAR_MATH.columnas, VAR_MATH.filas);
 	figura = new Figura();
 }
