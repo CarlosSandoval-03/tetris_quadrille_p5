@@ -137,9 +137,11 @@ class Figura extends Tetromino {
 	}
 
 	__limpiezalinea() {
-		let linea = busquedaLinea();
-		if (linea != undefined) {
-			limpiarTablero(linea);
+		for (let i = 0; i < VAR_MATH.filas; i++) {
+			let linea = busquedaLinea();
+			if (linea != undefined) {
+				limpiarTablero(linea);
+			}
 		}
 	}
 }
