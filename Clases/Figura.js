@@ -4,6 +4,7 @@ class Figura extends Tetromino {
 		this._xPos = COORDENADA.origenX;
 		this._yPos = COORDENADA.origenY;
 		this.__figuraEnJuego = this.__crearCuadricula();
+		this.__puntaje = 0;
 	}
 
 	get xPos() {
@@ -23,6 +24,12 @@ class Figura extends Tetromino {
 	}
 	set figuraEnJuego(valor = this.__figuraEnJuego) {
 		this.__figuraEnJuego = valor;
+	}
+	get puntaje() {
+		return this.__puntaje;
+	}
+	set puntaje(valor = this.__puntaje) {
+		this.__puntaje += valor;
 	}
 
 	__crearNuevo() {
@@ -136,17 +143,29 @@ class Figura extends Tetromino {
 		guardadoPieza(this.figuraEnJuego, { y: this.yPos, x: this.xPos });
 	}
 
+	__aumentarPuntaje(lineasBorradas = 0) {
+		const puntosLinea = 10,
+			denominadorFraccionPorcentaje = 10;
+		let puntajeTemporal = lineasBorradas * puntosLinea;
+		this.puntaje =
+			puntajeTemporal +
+			puntajeTemporal * (lineasBorradas / denominadorFraccionPorcentaje);
+	}
+
 	__limpiezalinea() {
+		let contador = 0;
 		for (let i = 0; i < VAR_MATH.filas; i++) {
 			let fila = busquedaFila();
 			if (fila != undefined) {
 				limpiarTablero(fila);
-				this.__gravedad(fila);
+				contador += 1;
+				this.__caidaTablero(fila);
 			}
 		}
+		this.__aumentarPuntaje(contador);
 	}
 
-	__gravedad(fila) {
+	__caidaTablero(fila) {
 		let inicioRecorrido = fila,
 			tablero = getTablero(),
 			matriz = tablero.toMatrix();
@@ -155,4 +174,5 @@ class Figura extends Tetromino {
 		}
 		setTablero(matriz);
 	}
+	__caidaFigura() {}
 }
