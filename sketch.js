@@ -1,4 +1,4 @@
-let figura, tablero, tableroVacio;
+let figura, tablero;
 let posX = 3,
 	posY = 4;
 

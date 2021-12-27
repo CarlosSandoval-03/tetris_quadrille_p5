@@ -93,6 +93,7 @@ class Figura extends Tetromino {
 	__arriba() {
 		this.yPos--;
 		this.__almacenarPieza();
+		this.__limpiezalinea();
 		this.__crearNuevo();
 	}
 	abajo() {
@@ -133,5 +134,12 @@ class Figura extends Tetromino {
 
 	__almacenarPieza() {
 		guardadoPieza(this.figuraEnJuego, { y: this.yPos, x: this.xPos });
+	}
+
+	__limpiezalinea() {
+		let linea = busquedaLinea();
+		if (linea != undefined) {
+			limpiarTablero(linea);
+		}
 	}
 }
