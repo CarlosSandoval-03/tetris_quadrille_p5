@@ -144,7 +144,7 @@ class Figura extends Tetromino {
 	}
 
 	__aumentarPuntaje(lineasBorradas = 0) {
-		const puntosLinea = 10,
+		const puntosLinea = 100,
 			denominadorFraccionPorcentaje = 10;
 		let puntajeTemporal = lineasBorradas * puntosLinea;
 		this.puntaje =
