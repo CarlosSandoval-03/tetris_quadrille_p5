@@ -8,5 +8,7 @@ A tetris without object-oriented must be developed, it is to visualize the diffi
 
 ## References
 
-1. https://objetos.github.io/p5.quadrille.js/docs/demo
-2. https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+1. https://p5js.org/es/reference/#/p5.Vector
+2. https://objetos.github.io/p5.quadrille.js/docs/demo
+3. https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+4. https://github.com/andersontr15/clean-code-javascript-es
