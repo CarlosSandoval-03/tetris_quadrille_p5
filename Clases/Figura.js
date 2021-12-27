@@ -138,10 +138,21 @@ class Figura extends Tetromino {
 
 	__limpiezalinea() {
 		for (let i = 0; i < VAR_MATH.filas; i++) {
-			let linea = busquedaLinea();
-			if (linea != undefined) {
-				limpiarTablero(linea);
+			let fila = busquedaFila();
+			if (fila != undefined) {
+				limpiarTablero(fila);
+				this.__gravedad(fila);
 			}
 		}
+	}
+
+	__gravedad(fila) {
+		let inicioRecorrido = fila,
+			tablero = getTablero(),
+			matriz = tablero.toMatrix();
+		for (let i = inicioRecorrido; i > 0; i--) {
+			matriz[i] = matriz[i - 1];
+		}
+		setTablero(matriz);
 	}
 }

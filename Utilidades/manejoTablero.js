@@ -9,7 +9,7 @@ function comparacionPieza(pieza, { y, x }) {
 	return mapa.toMatrix();
 }
 
-function busquedaLinea() {
+function busquedaFila() {
 	let matriz = tablero.toMatrix();
 	let ancho = matriz[0].length,
 		linea = 0;
@@ -31,4 +31,12 @@ function busquedaLinea() {
 
 function limpiarTablero(linea) {
 	tablero.clear(linea);
+}
+
+function setTablero(matriz) {
+	tablero = createQuadrille(matriz);
+}
+
+function getTablero() {
+	return tablero.clone();
 }
