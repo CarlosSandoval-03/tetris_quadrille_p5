@@ -16,3 +16,4 @@ A tetris without object-oriented must be developed, it is to visualize the diffi
 6. https://www.freepik.com/
 7. https://es.javascript.info/static-properties-methods
 8. https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
+9. https://es.stackoverflow.com/questions/57080/c%C3%B3mo-detener-al-momento-de-refrescar-una-p%C3%A1gina
