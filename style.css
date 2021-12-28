@@ -120,6 +120,27 @@ canvas {
 	margin-left: 6em;
 }
 
+/* https://developer.mozilla.org/es/docs/Web/CSS/grid-template-areas */
+.puntaje {
+	width: 10em;
+	color: #fff;
+	text-align: center;
+	margin: auto;
+	margin-top: 10%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-between;
+}
+
+.score {
+	margin: 0.5em 0;
+}
+
+.nivel {
+	margin-top: 5em;
+}
+
 /* https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/ */
 #pantalla-pausa {
 	width: 100%;

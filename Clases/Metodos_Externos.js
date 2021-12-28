@@ -19,18 +19,36 @@ class Externo {
 			document.getElementById("pantalla-pausa").style.height = "100%";
 			document.getElementById("titulo-pausa").style.visibility = "visible";
 			document.getElementById("parrafo-pausa").style.visibility = "visible";
+			// https://developer.mozilla.org/es/docs/Web/CSS/position
 			document.getElementById("mainGame").style.position = "relative";
 			document.getElementById("mainGame").style.top = "999em";
 		} else {
 			document.getElementById("pantalla-pausa").style.height = "0px";
 			document.getElementById("titulo-pausa").style.visibility = "hidden";
 			document.getElementById("parrafo-pausa").style.visibility = "hidden";
+
 			document.getElementById("mainGame").style.position = "static";
 			document.getElementById("mainGame").style.left = "0px";
 		}
 	}
 
+	// https://es.stackoverflow.com/questions/57080/c%C3%B3mo-detener-al-momento-de-refrescar-una-p%C3%A1gina
+	static noRecarga() {
+		window.onbeforeunload = function () {
+			return "¿Desea recargar la página web?";
+		};
+	}
+	// TODO: Implementar top score
+	static actualizacionDatos() {
+		let puntaje = `${figura.puntaje}`;
+		let nivel = `${figura.nivel}`;
+		// https://developer.mozilla.org/es/docs/Web/API/Element/innerHTML
+		document.getElementById("game-score").innerHTML = puntaje;
+		document.getElementById("game-level").innerHTML = nivel;
+	}
+
 	static manejoCanva() {
+		Externo.actualizacionDatos();
 		Externo.divPausa();
 		Externo.noRecarga();
 		if (!focused) {
@@ -38,11 +56,5 @@ class Externo {
 		} else {
 			pausa = false;
 		}
-	}
-	// https://es.stackoverflow.com/questions/57080/c%C3%B3mo-detener-al-momento-de-refrescar-una-p%C3%A1gina
-	static noRecarga() {
-		window.onbeforeunload = function () {
-			return "¿Desea recargar la página web?";
-		};
 	}
 }
