@@ -41,11 +41,15 @@ class Figura extends Tetromino {
 	__crearCuadricula(molde = super.definicionMolde()) {
 		return createQuadrille(super.anchoMatriz, molde);
 	}
-
+	/* 
+	En versiones anteriores de Quadrille se usaban parametros x - y, desde la version 0.9.0 
+	se emplea el manejo de columnas y filas, debido a esto ocurrian incongruencias con versiones
+	anteriores del codigo, desde ahora x = col, y = row
+	*/
 	dibujar() {
 		drawQuadrille(this.figuraEnJuego, {
-			x: this.xPos,
-			y: this.yPos,
+			col: this.xPos,
+			row: this.yPos,
 			cellLength: VAR_MATH.tamanoCeldas,
 			outline: VAR_CANVA.bordeFigura,
 		});
