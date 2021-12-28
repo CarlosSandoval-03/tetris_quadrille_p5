@@ -19,10 +19,14 @@ class Externo {
 			document.getElementById("pantalla-pausa").style.height = "100%";
 			document.getElementById("titulo-pausa").style.visibility = "visible";
 			document.getElementById("parrafo-pausa").style.visibility = "visible";
+			document.getElementById("mainGame").style.position = "relative";
+			document.getElementById("mainGame").style.top = "999em";
 		} else {
 			document.getElementById("pantalla-pausa").style.height = "0px";
 			document.getElementById("titulo-pausa").style.visibility = "hidden";
 			document.getElementById("parrafo-pausa").style.visibility = "hidden";
+			document.getElementById("mainGame").style.position = "static";
+			document.getElementById("mainGame").style.left = "0px";
 		}
 	}
 
