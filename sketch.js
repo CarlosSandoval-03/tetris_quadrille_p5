@@ -20,5 +20,5 @@ function draw() {
 		outline: VAR_CANVA.bordeTablero,
 		board: true,
 	});
-	figura.dibujar();
+	figura.iniciar();
 }
