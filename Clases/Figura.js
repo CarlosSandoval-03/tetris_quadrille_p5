@@ -66,7 +66,6 @@ class Figura extends Tetromino {
 		this.__dibujar();
 		if (!pausa) {
 			this.__caidaFigura(frameCount);
-		} else {
 		}
 	}
 
