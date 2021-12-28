@@ -2,7 +2,7 @@ class Tetromino {
 	constructor() {
 		// Se manejan unicamente 7 figuras, la funcion excluye el segundo parametro
 		// Por esa razon se maneja en n+1 a pesar de iniciar desde 0
-		this.__indice = numeroAleatorioEntero(0, 7);
+		this.__indice = Externo.numeroAleatorioEntero(0, 7);
 		this.__color = undefined;
 		this.__anchoMatriz = undefined;
 		this.__altoMatriz = undefined;
@@ -34,7 +34,7 @@ class Tetromino {
 	}
 
 	__nuevoMolde() {
-		this.indice = numeroAleatorioEntero(0, 7);
+		this.indice = Externo.numeroAleatorioEntero(0, 7);
 		return this.definicionMolde();
 	}
 

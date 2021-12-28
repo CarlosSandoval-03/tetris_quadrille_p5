@@ -14,3 +14,4 @@ A tetris without object-oriented must be developed, it is to visualize the diffi
 4. https://github.com/andersontr15/clean-code-javascript-es
 5. https://www.youtube.com/watch?v=nq0vAO6SDlI
 6. https://www.freepik.com/
+7. https://es.javascript.info/static-properties-methods

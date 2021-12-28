@@ -83,7 +83,10 @@ class Figura extends Tetromino {
 			y: this.yPos,
 			x: this.xPos,
 		};
-		let matrizComparativa = comparacionPieza(this.figuraEnJuego, posicion);
+		let matrizComparativa = Tablero.comparacionPieza(
+			this.figuraEnJuego,
+			posicion
+		);
 
 		for (let fila of matrizComparativa) {
 			for (let valor of fila) {
@@ -134,8 +137,8 @@ class Figura extends Tetromino {
 
 	__actualizacionTamanoMatriz() {
 		let temp = this.figuraEnJuego.toMatrix();
-		super.anchoMatriz = obtenerAnchoMatriz(temp);
-		super.altoMatriz = obtenerAltoMatriz(temp);
+		super.anchoMatriz = Externo.obtenerAnchoMatriz(temp);
+		super.altoMatriz = Externo.obtenerAltoMatriz(temp);
 	}
 
 	rotacionIzquierda() {
@@ -157,7 +160,7 @@ class Figura extends Tetromino {
 	}
 
 	__almacenarPieza() {
-		guardadoPieza(this.figuraEnJuego, { y: this.yPos, x: this.xPos });
+		Tablero.guardadoPieza(this.figuraEnJuego, { y: this.yPos, x: this.xPos });
 	}
 
 	__aumentarPuntaje(lineasBorradas = 0) {
@@ -172,9 +175,9 @@ class Figura extends Tetromino {
 	__limpiezalinea() {
 		let contador = 0;
 		for (let i = 0; i < VAR_MATH.filas; i++) {
-			let fila = busquedaFila();
+			let fila = Tablero.busquedaFila();
 			if (fila != undefined) {
-				limpiarTablero(fila);
+				Tablero.limpiarLinea(fila);
 				contador += 1;
 				this.__caidaTablero(fila);
 			}
@@ -184,12 +187,12 @@ class Figura extends Tetromino {
 
 	__caidaTablero(fila) {
 		let inicioRecorrido = fila,
-			tablero = getTablero(),
+			tablero = Tablero.obtener(),
 			matriz = tablero.toMatrix();
 		for (let i = inicioRecorrido; i > 0; i--) {
 			matriz[i] = matriz[i - 1];
 		}
-		setTablero(matriz);
+		Tablero.cambiar(matriz);
 	}
 	// https://objetos.github.io/p5.quadrille.js/docs/demo - Line 23
 	__caidaFigura(frames) {
