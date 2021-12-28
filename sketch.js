@@ -15,7 +15,7 @@ function setup() {
 
 function draw() {
 	background(VAR_CANVA.color);
-	Externo.canvaFocused();
+	Externo.manejoCanva();
 
 	drawQuadrille(tablero, {
 		cellLength: VAR_MATH.tamanoCeldas,
