@@ -3,6 +3,8 @@ let posX = 3,
 	posY = 4;
 
 function setup() {
+	Externo.deteccionDispositivoMovil();
+
 	let canva = createCanvas(VAR_CANVA.ancho, VAR_CANVA.alto);
 	canva.id("mainGame");
 	canva.class("gameWindow");

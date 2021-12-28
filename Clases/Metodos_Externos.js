@@ -13,6 +13,23 @@ class Externo {
 		}
 	}
 
+	static deteccionDispositivoMovil() {
+		// https://codigofuente.io/detectar-dispositivo-movil-con-javascript/
+		if (
+			navigator.userAgent.match(/Android/i) ||
+			navigator.userAgent.match(/webOS/i) ||
+			navigator.userAgent.match(/iPhone/i) ||
+			navigator.userAgent.match(/iPad/i) ||
+			navigator.userAgent.match(/iPod/i) ||
+			navigator.userAgent.match(/BlackBerry/i) ||
+			navigator.userAgent.match(/Windows Phone/i)
+		) {
+			confirm(
+				"El dispositivo puede no ser compatible con el juego, por favor acceda desde un computador"
+			);
+		}
+	}
+
 	// https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
 	static divPausa() {
 		if (pausa) {

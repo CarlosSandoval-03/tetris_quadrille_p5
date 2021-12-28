@@ -20,3 +20,4 @@ A tetris without object-oriented must be developed, it is to visualize the diffi
 10. https://developer.mozilla.org/es/docs/Web/CSS/position
 11. https://developer.mozilla.org/es/docs/Web/CSS/grid-template-areas
 12. https://developer.mozilla.org/es/docs/Web/API/Element/innerHTML
+13. https://codigofuente.io/detectar-dispositivo-movil-con-javascript/
