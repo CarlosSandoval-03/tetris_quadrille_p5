@@ -12,4 +12,12 @@ class Externo {
 			return matriz[fila].length;
 		}
 	}
+
+	static canvaFocused() {
+		if (!focused) {
+			pausa = true;
+		} else {
+			pausa = false;
+		}
+	}
 }

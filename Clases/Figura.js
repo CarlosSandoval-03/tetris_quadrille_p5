@@ -62,9 +62,12 @@ class Figura extends Tetromino {
 		});
 	}
 
-	iniciar() {
+	iniciar(pausa = false) {
 		this.__dibujar();
-		this.__caidaFigura(frameCount);
+		if (!pausa) {
+			this.__caidaFigura(frameCount);
+		} else {
+		}
 	}
 
 	__fueraTablero() {

@@ -1,4 +1,4 @@
-let figura, tablero;
+let figura, tablero, pausa;
 let posX = 3,
 	posY = 4;
 
@@ -10,15 +10,17 @@ function setup() {
 
 	tablero = createQuadrille(VAR_MATH.columnas, VAR_MATH.filas);
 	figura = new Figura();
+	pausa = false;
 }
 
 function draw() {
 	background(VAR_CANVA.color);
+	Externo.canvaFocused();
 
 	drawQuadrille(tablero, {
 		cellLength: VAR_MATH.tamanoCeldas,
 		outline: VAR_CANVA.bordeTablero,
 		board: true,
 	});
-	figura.iniciar();
+	figura.iniciar(pausa);
 }
