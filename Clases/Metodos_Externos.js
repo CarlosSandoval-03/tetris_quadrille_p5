@@ -13,7 +13,21 @@ class Externo {
 		}
 	}
 
-	static canvaFocused() {
+	// https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
+	static divPausa() {
+		if (pausa) {
+			document.getElementById("pantalla-pausa").style.height = "100%";
+			document.getElementById("titulo-pausa").style.visibility = "visible";
+			document.getElementById("parrafo-pausa").style.visibility = "visible";
+		} else {
+			document.getElementById("pantalla-pausa").style.height = "0px";
+			document.getElementById("titulo-pausa").style.visibility = "hidden";
+			document.getElementById("parrafo-pausa").style.visibility = "hidden";
+		}
+	}
+
+	static manejoCanva() {
+		Externo.divPausa();
 		if (!focused) {
 			pausa = true;
 		} else {
