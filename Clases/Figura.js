@@ -191,6 +191,7 @@ class Figura extends Tetromino {
 		}
 		setTablero(matriz);
 	}
+	// https://objetos.github.io/p5.quadrille.js/docs/demo - Line 23
 	__caidaFigura(frames) {
 		const VELOCIDAD = Math.floor(60 * (1 / this.__nivel));
 		if (frames % VELOCIDAD === 0) {
