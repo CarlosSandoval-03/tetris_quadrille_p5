@@ -5,6 +5,7 @@ class Figura extends Tetromino {
 		this._yPos = COORDENADA.origenY;
 		this.__figuraEnJuego = this.__crearCuadricula();
 		this.__puntaje = 0;
+		this.__nivel = 1;
 	}
 
 	get xPos() {
@@ -29,7 +30,13 @@ class Figura extends Tetromino {
 		return this.__puntaje;
 	}
 	set puntaje(valor = this.__puntaje) {
-		this.__puntaje += valor;
+		this.__puntaje = valor;
+	}
+	get nivel() {
+		return this.__nivel;
+	}
+	set nivel(valor = this.__nivel) {
+		this.__nivel = valor;
 	}
 
 	__crearNuevo() {
@@ -46,13 +53,18 @@ class Figura extends Tetromino {
 	se emplea el manejo de columnas y filas, debido a esto ocurrian incongruencias con versiones
 	anteriores del codigo, desde ahora x = col, y = row
 	*/
-	dibujar() {
+	__dibujar() {
 		drawQuadrille(this.figuraEnJuego, {
 			col: this.xPos,
 			row: this.yPos,
 			cellLength: VAR_MATH.tamanoCeldas,
 			outline: VAR_CANVA.bordeFigura,
 		});
+	}
+
+	iniciar() {
+		this.__dibujar();
+		this.__caidaFigura(frameCount);
 	}
 
 	__fueraTablero() {
@@ -125,6 +137,7 @@ class Figura extends Tetromino {
 		super.anchoMatriz = obtenerAnchoMatriz(temp);
 		super.altoMatriz = obtenerAltoMatriz(temp);
 	}
+
 	rotacionIzquierda() {
 		this.figuraEnJuego.rotate();
 		this.__actualizacionTamanoMatriz();
@@ -151,7 +164,7 @@ class Figura extends Tetromino {
 		const puntosLinea = 100,
 			denominadorFraccionPorcentaje = 10;
 		let puntajeTemporal = lineasBorradas * puntosLinea;
-		this.puntaje =
+		this.puntaje +=
 			puntajeTemporal +
 			puntajeTemporal * (lineasBorradas / denominadorFraccionPorcentaje);
 	}
@@ -178,5 +191,19 @@ class Figura extends Tetromino {
 		}
 		setTablero(matriz);
 	}
-	__caidaFigura() {}
+	__caidaFigura(frames) {
+		const VELOCIDAD = Math.floor(60 * (1 / this.__nivel));
+		if (frames % VELOCIDAD === 0) {
+			this.abajo();
+		}
+		this.__cambioNivel();
+	}
+
+	__cambioNivel() {
+		const SIMPLIFICACION_A_DECENAS = 1000,
+			EVITAR_NIVEL_CERO = 1;
+		this.nivel = Math.floor(
+			this.puntaje / SIMPLIFICACION_A_DECENAS + EVITAR_NIVEL_CERO
+		);
+	}
 }
