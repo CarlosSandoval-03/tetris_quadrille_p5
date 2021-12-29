@@ -45,6 +45,7 @@ class ControladorDOM {
 			titulo.style.visibility = "visible";
 			parrafo.style.visibility = "visible";
 			canva.style.visibility = "hidden";
+			Almacenamiento.actualizacionDatos();
 		}
 	}
 
