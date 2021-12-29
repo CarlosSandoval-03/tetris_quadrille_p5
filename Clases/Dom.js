@@ -40,11 +40,11 @@ class ControladorDOM {
 			canva = document.getElementById("mainGame");
 
 		if (derrota) {
+			document.getElementById("pantalla-pausa").style.height = "0px";
 			contenedor.style.height = "100%";
 			titulo.style.visibility = "visible";
 			parrafo.style.visibility = "visible";
 			canva.style.visibility = "hidden";
-			document.getElementById("pantalla-pausa").style.height = "0px";
 		}
 	}
 
