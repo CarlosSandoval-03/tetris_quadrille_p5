@@ -1,7 +1,7 @@
 class ControladorDOM {
 	static actualizacion() {
 		Almacenamiento.actualizacionDatos();
-		ControladorDOM.divPausa(pausa);
+		ControladorDOM.divPausa(pausa, derrota);
 		ControladorDOM.divDerrota(derrota);
 		ControladorDOM.noRecarga();
 		if (!focused || contador % 2 != 0) {
@@ -13,13 +13,13 @@ class ControladorDOM {
 
 	// https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
 	// https://developer.mozilla.org/es/docs/Web/CSS/position
-	static divPausa(pausa = false) {
+	static divPausa(pausa = false, derrota = false) {
 		let titulo = document.getElementById("titulo-pausa"),
 			parrafo = document.getElementById("parrafo-pausa"),
 			contenedor = document.getElementById("pantalla-pausa"),
 			canva = document.getElementById("mainGame");
 
-		if (pausa) {
+		if (pausa && derrota == false) {
 			contenedor.style.height = "100%";
 			titulo.style.visibility = "visible";
 			parrafo.style.visibility = "visible";
