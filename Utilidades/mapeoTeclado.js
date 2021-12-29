@@ -2,9 +2,12 @@ const SPACE_KEY = 32,
 	Z_KEY = 90,
 	P_KEY = 80;
 
+let contador = 0;
+
 function keyPressed() {
 	if (keyIsDown(P_KEY)) {
 		pausa = !pausa;
+		contador += 1;
 	}
 	if (!pausa) {
 		if (keyIsDown(RIGHT_ARROW)) {

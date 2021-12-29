@@ -90,7 +90,7 @@ class Externo {
 		Externo.actualizacionDatos();
 		Externo.divPausa(pausa);
 		Externo.noRecarga();
-		if (!focused) {
+		if (!focused || contador % 2 != 0) {
 			pausa = true;
 		} else {
 			pausa = false;
