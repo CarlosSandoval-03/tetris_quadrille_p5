@@ -1,5 +1,5 @@
-class ControladorDOM {
-	static actualizacion() {
+const ControladorDOM = {
+	actualizacion: function () {
 		Almacenamiento.actualizacionDatos();
 		ControladorDOM.divPausa(pausa, derrota);
 		ControladorDOM.divDerrota(derrota);
@@ -8,11 +8,11 @@ class ControladorDOM {
 		} else {
 			pausa = false;
 		}
-	}
+	},
 
 	// https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
 	// https://developer.mozilla.org/es/docs/Web/CSS/position
-	static divPausa(pausa = false, derrota = false) {
+	divPausa: function (pausa = false, derrota = false) {
 		let titulo = document.getElementById("titulo-pausa"),
 			parrafo = document.getElementById("parrafo-pausa"),
 			contenedor = document.getElementById("pantalla-pausa"),
@@ -31,8 +31,8 @@ class ControladorDOM {
 			document.getElementById("mainGame").style.position = "static";
 			document.getElementById("mainGame").style.left = "0px";
 		}
-	}
-	static divDerrota(derrota = false) {
+	},
+	divDerrota: function (derrota = false) {
 		let contenedor = document.getElementById("pantalla-derrota"),
 			titulo = document.getElementById("titulo-derrota"),
 			parrafo = document.getElementById("parrafo-derrota"),
@@ -47,5 +47,5 @@ class ControladorDOM {
 			Almacenamiento.actualizacionDatos();
 			Almacenamiento.obtenerTopScore();
 		}
-	}
-}
+	},
+};
