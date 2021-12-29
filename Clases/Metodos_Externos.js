@@ -31,8 +31,8 @@ class Externo {
 	}
 
 	// https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
-	static divPausa() {
-		if (pausa) {
+	static divPausa(estado = false) {
+		if (estado) {
 			document.getElementById("pantalla-pausa").style.height = "100%";
 			document.getElementById("titulo-pausa").style.visibility = "visible";
 			document.getElementById("parrafo-pausa").style.visibility = "visible";
@@ -48,6 +48,12 @@ class Externo {
 			document.getElementById("mainGame").style.left = "0px";
 		}
 	}
+	// ! Funcion no usada ni terminada
+	static divDerrota(estado = false) {
+		if (estado) {
+			console.log("Perdio");
+		}
+	}
 
 	// https://es.stackoverflow.com/questions/57080/c%C3%B3mo-detener-al-momento-de-refrescar-una-p%C3%A1gina
 	static noRecarga() {
@@ -55,7 +61,19 @@ class Externo {
 			return "¿Desea recargar la página web?";
 		};
 	}
-	// TODO: Implementar top score
+
+	// https://www.youtube.com/watch?v=hb8O0qRqiSk
+	static guardarTopScore(nuevoPuntaje) {
+		localStorage.setItem("topScore", nuevoPuntaje);
+	}
+	static obtenerTopScore() {
+		let score = localStorage.getItem("topScore");
+		if (score == null || score == undefined) {
+			score = 0;
+		}
+		return score;
+	}
+
 	static actualizacionDatos() {
 		let puntaje = `${figura.puntaje}`;
 		let nivel = `${figura.nivel}`;
@@ -64,9 +82,13 @@ class Externo {
 		document.getElementById("game-level").innerHTML = nivel;
 	}
 
+	static obtenerPuntajeMaximo() {
+		document.getElementById("top-score").innerHTML = this.obtenerTopScore();
+	}
+
 	static manejoCanva() {
 		Externo.actualizacionDatos();
-		Externo.divPausa();
+		Externo.divPausa(pausa);
 		Externo.noRecarga();
 		if (!focused) {
 			pausa = true;

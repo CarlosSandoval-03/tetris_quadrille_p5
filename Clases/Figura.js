@@ -62,10 +62,17 @@ class Figura extends Tetromino {
 		});
 	}
 
-	iniciar(pausa = false) {
+	iniciar(pausa = false, derrota = false) {
 		this.__dibujar();
 		if (!pausa) {
 			this.__caidaFigura(frameCount);
+		}
+		if (!derrota) {
+			derrota = this.__perder();
+		} else {
+			if (parseInt(Externo.obtenerTopScore(), 10) < this.puntaje) {
+				Externo.guardarTopScore(this.puntaje);
+			}
 		}
 	}
 
@@ -211,5 +218,16 @@ class Figura extends Tetromino {
 		this.nivel = Math.floor(
 			this.puntaje / SIMPLIFICACION_A_DECENAS + EVITAR_NIVEL_CERO
 		);
+	}
+
+	__perder() {
+		let mapa = Tablero.obtener();
+		mapa = mapa.toMatrix();
+		for (let col of mapa[0]) {
+			if (col != 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

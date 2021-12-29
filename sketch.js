@@ -1,9 +1,10 @@
-let figura, tablero, pausa;
+let figura, tablero, pausa, derrota;
 let posX = 3,
 	posY = 4;
 
 function setup() {
 	Externo.deteccionDispositivoMovil();
+	Externo.obtenerPuntajeMaximo();
 
 	let canva = createCanvas(VAR_CANVA.ancho, VAR_CANVA.alto);
 	canva.id("mainGame");
@@ -12,7 +13,9 @@ function setup() {
 
 	tablero = createQuadrille(VAR_MATH.columnas, VAR_MATH.filas);
 	figura = new Figura();
+
 	pausa = false;
+	derrota = false;
 }
 
 function draw() {
@@ -24,5 +27,5 @@ function draw() {
 		outline: VAR_CANVA.bordeTablero,
 		board: true,
 	});
-	figura.iniciar(pausa);
+	figura.iniciar(pausa, derrota);
 }
