@@ -142,7 +142,7 @@ canvas {
 }
 
 /* https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/ */
-#pantalla-pausa {
+.pantalla {
 	width: 100%;
 	margin: auto;
 	height: 0px; /* 100% */
@@ -155,15 +155,27 @@ canvas {
 	justify-content: center;
 }
 
-#titulo-pausa {
+.titulo {
 	font-size: 3em;
 	align-self: center;
 }
 
-#parrafo-pausa {
+.parrafo {
 	text-align: center;
 	align-self: center;
 	margin: 1.5em;
+}
+
+#pantalla-derrota {
+	height: 0px;
+}
+
+#titulo-derrota {
+	visibility: hidden;
+}
+
+#parrafo-derrota {
+	visibility: hidden;
 }
 
 footer {

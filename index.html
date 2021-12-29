@@ -42,9 +42,13 @@
 				<h2>Siguiente ficha</h2>
 			</div>
 			<div class="canvas-box">
-				<div class="pantalla-pausa" id="pantalla-pausa">
-					<h2 id="titulo-pausa">PAUSA</h2>
-					<p id="parrafo-pausa">
+				<div class="pantalla" id="pantalla-derrota">
+					<h2 class="titulo" id="titulo-derrota">GAME-OVER</h2>
+					<p class="parrafo" id="parrafo-derrota">Recarga la pagina!</p>
+				</div>
+				<div class="pantalla" id="pantalla-pausa">
+					<h2 class="titulo" id="titulo-pausa">PAUSA</h2>
+					<p class="parrafo" id="parrafo-pausa">
 						Para renaudar presiona "P"<br />
 						o clickea la ventana
 					</p>
@@ -82,10 +86,14 @@
 		<script src="Utilidades/pantallaCarga.js"></script>
 		<!-- Scripts p5 -->
 		<script src="Clases/Metodos_Externos.js"></script>
+		<script src="Clases/Almacenamiento.js"></script>
+		<script src="Clases/Dom.js"></script>
 		<script src="Objetos/constantes.js"></script>
 		<script src="Clases/Tetromino.js"></script>
 		<script src="Clases/Figura.js"></script>
+
 		<script src="sketch.js"></script>
+
 		<script src="Utilidades/mapeoTeclado.js"></script>
 		<script src="Clases/Tablero.js"></script>
 	</body>

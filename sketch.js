@@ -4,7 +4,7 @@ let posX = 3,
 
 function setup() {
 	Externo.deteccionDispositivoMovil();
-	Externo.obtenerPuntajeMaximo();
+	Almacenamiento.obtenerPuntajeMaximo();
 
 	let canva = createCanvas(VAR_CANVA.ancho, VAR_CANVA.alto);
 	canva.id("mainGame");
@@ -20,7 +20,7 @@ function setup() {
 
 function draw() {
 	background(VAR_CANVA.color);
-	Externo.manejoCanva();
+	ControladorDOM.actualizacion();
 
 	drawQuadrille(tablero, {
 		cellLength: VAR_MATH.tamanoCeldas,

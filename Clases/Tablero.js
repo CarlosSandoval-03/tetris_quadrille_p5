@@ -1,4 +1,5 @@
 // Manejo de tablero
+/* La variable de Tablero ya fue definida en sketch.js */
 class Tablero {
 	// https://objetos.github.io/p5.quadrille.js/docs/demo
 	static guardadoPieza(pieza, { y, x }) {

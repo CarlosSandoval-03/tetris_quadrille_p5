@@ -70,8 +70,8 @@ class Figura extends Tetromino {
 		if (!derrota) {
 			derrota = this.__perder();
 		} else {
-			if (parseInt(Externo.obtenerTopScore(), 10) < this.puntaje) {
-				Externo.guardarTopScore(this.puntaje);
+			if (parseInt(Almacenamiento.obtenerTopScore(), 10) < this.puntaje) {
+				Almacenamiento.guardarTopScore(this.puntaje);
 			}
 		}
 	}
