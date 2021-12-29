@@ -3,7 +3,6 @@ class ControladorDOM {
 		Almacenamiento.actualizacionDatos();
 		ControladorDOM.divPausa(pausa, derrota);
 		ControladorDOM.divDerrota(derrota);
-		ControladorDOM.noRecarga();
 		if (!focused || contador % 2 != 0) {
 			pausa = true;
 		} else {
@@ -48,12 +47,5 @@ class ControladorDOM {
 			Almacenamiento.actualizacionDatos();
 			Almacenamiento.obtenerTopScore();
 		}
-	}
-
-	// https://es.stackoverflow.com/questions/57080/c%C3%B3mo-detener-al-momento-de-refrescar-una-p%C3%A1gina
-	static noRecarga() {
-		window.onbeforeunload = function () {
-			return "¿Desea recargar la página web?";
-		};
 	}
 }

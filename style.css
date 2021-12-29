@@ -47,6 +47,20 @@
 	}
 }
 
+@media (max-width: 795px) {
+	.pantalla,
+	.puntaje,
+	.borde-lateral {
+		position: relative;
+		visibility: hidden;
+	}
+
+	.canvas-box {
+		position: relative;
+		right: 1em;
+	}
+}
+
 /* Base */
 html,
 body {
