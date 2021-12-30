@@ -3,7 +3,9 @@ class Figura extends Tetromino {
 		super();
 		this._xPos = COORDENADA.origenX;
 		this._yPos = COORDENADA.origenY;
-		this.__figuraEnJuego = this.__crearCuadricula();
+		this._yFantasmaPos = COORDENADA.origenY;
+		this.__figuraEnJuego = this.__crearCuadricula()[0];
+		this.__fantasma = this.__crearCuadricula()[1];
 		this.__puntaje = 0;
 		this.__nivel = 1;
 	}
@@ -38,15 +40,32 @@ class Figura extends Tetromino {
 	set nivel(valor = this.__nivel) {
 		this.__nivel = valor;
 	}
+	get fantasma() {
+		return this.__fantasma;
+	}
+	set fantasma(valor = this.__fantasma) {
+		this.__fantasma = valor;
+	}
+	get yFantasmaPos() {
+		return this._yFantasmaPos;
+	}
+	set yFantasmaPos(valor = this._yFantasmaPos) {
+		this._yFantasmaPos = valor;
+	}
 
 	__crearNuevo() {
 		this.xPos = COORDENADA.origenX;
 		this.yPos = COORDENADA.origenY;
-		this.figuraEnJuego = this.__crearCuadricula(super.__nuevoMolde());
+		let moldes = this.__crearCuadricula(super.__nuevoMolde());
+		this.figuraEnJuego = moldes[0];
+		this.fantasma = moldes[1];
 	}
 
-	__crearCuadricula(molde = super.definicionMolde()) {
-		return createQuadrille(super.anchoMatriz, molde);
+	__crearCuadricula(molde = super.moldeFigura()) {
+		return [
+			createQuadrille(super.anchoMatriz, molde[0]),
+			createQuadrille(super.anchoMatriz, molde[1]),
+		];
 	}
 	/* 
 	En versiones anteriores de Quadrille se usaban parametros x - y, desde la version 0.9.0 
@@ -57,6 +76,13 @@ class Figura extends Tetromino {
 		drawQuadrille(this.figuraEnJuego, {
 			col: this.xPos,
 			row: this.yPos,
+			cellLength: VAR_MATH.tamanoCeldas,
+			outline: VAR_CANVA.bordeFigura,
+		});
+		this.__hardDropFantasma();
+		drawQuadrille(this.fantasma, {
+			col: this.xPos,
+			row: this.yFantasmaPos,
 			cellLength: VAR_MATH.tamanoCeldas,
 			outline: VAR_CANVA.bordeFigura,
 		});
@@ -148,10 +174,15 @@ class Figura extends Tetromino {
 		let temp = this.figuraEnJuego.toMatrix();
 		super.anchoMatriz = Externo.obtenerAnchoMatriz(temp);
 		super.altoMatriz = Externo.obtenerAltoMatriz(temp);
+
+		let aux = this.fantasma.toMatrix();
+		super.anchoMatriz = Externo.obtenerAnchoMatriz(aux);
+		super.altoMatriz = Externo.obtenerAltoMatriz(aux);
 	}
 
 	rotacionIzquierda() {
 		this.figuraEnJuego.rotate();
+		this.fantasma.rotate();
 		this.__actualizacionTamanoMatriz();
 		if (!this.__verificacionPosicionValida()) {
 			this.rotacionDerecha();
@@ -161,6 +192,7 @@ class Figura extends Tetromino {
 		// 3 debido a que simula una rotacion inversa
 		for (let i = 0; i < 3; i++) {
 			this.figuraEnJuego.rotate();
+			this.fantasma.rotate();
 		}
 		this.__actualizacionTamanoMatriz();
 		if (!this.__verificacionPosicionValida()) {
@@ -229,5 +261,48 @@ class Figura extends Tetromino {
 			}
 		}
 		return false;
+	}
+
+	__posicionValidaFantasma() {
+		if (!this.__fueraFantasma() && !this.__colisionFantasma()) {
+			return true;
+		}
+		return false;
+	}
+
+	__fueraFantasma() {
+		const indicesTablero = [VAR_MATH.columnas + 1, VAR_MATH.filas + 1];
+		if (
+			this.xPos < 0 ||
+			this.xPos >= indicesTablero[0] - super.anchoMatriz ||
+			this.yFantasmaPos >= indicesTablero[1] - super.altoMatriz
+		) {
+			return true;
+		}
+		return false;
+	}
+
+	__colisionFantasma() {
+		let posicion = {
+			y: this.yFantasmaPos,
+			x: this.xPos,
+		};
+		let matrizComparativa = Tablero.comparacionPieza(this.fantasma, posicion);
+
+		for (let fila of matrizComparativa) {
+			for (let valor of fila) {
+				if (valor != 0) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	__hardDropFantasma() {
+		while (this.__posicionValidaFantasma()) {
+			this.yFantasmaPos++;
+		}
+		this.yFantasmaPos--;
 	}
 }

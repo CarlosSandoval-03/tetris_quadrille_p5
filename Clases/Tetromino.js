@@ -4,6 +4,7 @@ class Tetromino {
 		// Por esa razon se maneja en n+1 a pesar de iniciar desde 0
 		this.__indice = Externo.numeroAleatorioEntero(0, 7);
 		this.__color = undefined;
+		this.__colFantasma = undefined;
 		this.__anchoMatriz = undefined;
 		this.__altoMatriz = undefined;
 	}
@@ -20,6 +21,12 @@ class Tetromino {
 	set color(nuevoValor = this.__color) {
 		this.__color = nuevoValor;
 	}
+	get colFantasma() {
+		return this.__colFantasma;
+	}
+	set colFantasma(nuevoValor = this.__colFantasma) {
+		this.__colFantasma = nuevoValor;
+	}
 	get anchoMatriz() {
 		return this.__anchoMatriz;
 	}
@@ -35,53 +42,83 @@ class Tetromino {
 
 	__nuevoMolde() {
 		this.indice = Externo.numeroAleatorioEntero(0, 7);
-		return this.definicionMolde();
+		return this.moldeFigura();
 	}
 
-	definicionMolde() {
+	moldeFigura() {
+		let molde = this.__definicionMolde(),
+			fig = [];
+
+		for (let elemento of molde) {
+			if (elemento == 1) {
+				fig.push(this.color);
+			} else {
+				fig.push(0);
+			}
+		}
+		let fantasma = [];
+
+		for (let elemento of molde) {
+			if (elemento == 1) {
+				fantasma.push(this.colFantasma);
+			} else {
+				fantasma.push(0);
+			}
+		}
+		return [fig, fantasma];
+	}
+
+	__definicionMolde() {
 		switch (this.indice) {
 			// Figura I
 			case 0:
 				this.anchoMatriz = 1;
 				this.altoMatriz = 4;
 				this.color = color(0, 255, 255, 255);
-				return [this.color, this.color, this.color, this.color];
+				this.colFantasma = color(0, 255, 255, 100);
+				return [1, 1, 1, 1];
 			// Figura J
 			case 1:
 				this.anchoMatriz = 2;
 				this.altoMatriz = 3;
 				this.color = color(0, 0, 255, 255);
-				return [0, this.color, 0, this.color, this.color, this.color];
+				this.colFantasma = color(0, 0, 255, 100);
+				return [0, 1, 0, 1, 1, 1];
 			// Figura L
 			case 2:
 				this.anchoMatriz = 2;
 				this.altoMatriz = 3;
 				this.color = color(255, 165, 0, 255);
-				return [this.color, 0, this.color, 0, this.color, this.color];
+				this.colFantasma = color(255, 165, 0, 100);
+				return [1, 0, 1, 0, 1, 1];
 			// Figura O
 			case 3:
 				this.anchoMatriz = 2;
 				this.altoMatriz = 2;
 				this.color = color(255, 255, 0, 255);
-				return [this.color, this.color, this.color, this.color];
+				this.colFantasma = color(255, 255, 0, 100);
+				return [1, 1, 1, 1];
 			// Figura S
 			case 4:
 				this.anchoMatriz = 3;
 				this.altoMatriz = 2;
 				this.color = color(255, 0, 0, 255);
-				return [0, this.color, this.color, this.color, this.color, 0];
+				this.colFantasma = color(255, 0, 0, 100);
+				return [0, 1, 1, 1, 1, 0];
 			// Figura T
 			case 5:
 				this.anchoMatriz = 3;
 				this.altoMatriz = 2;
 				this.color = color(255, 0, 255, 255);
-				return [0, this.color, 0, this.color, this.color, this.color];
+				this.colFantasma = color(255, 0, 255, 100);
+				return [0, 1, 0, 1, 1, 1];
 			// Figura Z
 			case 6:
 				this.anchoMatriz = 3;
 				this.altoMatriz = 2;
 				this.color = color(0, 128, 0, 255);
-				return [this.color, this.color, 0, 0, this.color, this.color];
+				this.colFantasma = color(0, 128, 0, 100);
+				return [1, 1, 0, 0, 1, 1];
 		}
 	}
 }
