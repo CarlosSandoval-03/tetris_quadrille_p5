@@ -1,3 +1,4 @@
+// ? Como mi clase figura aplica en otros juegos
 class Figura extends Tetromino {
 	constructor() {
 		super();
