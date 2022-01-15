@@ -1,6 +1,7 @@
 // Manejo de tablero
 /* La variable de Tablero ya fue definida en sketch.js */
 class Tablero {
+	// Quadrille.JS
 	// https://objetos.github.io/p5.quadrille.js/docs/demo
 	static guardadoPieza(pieza, { y, x }) {
 		let clon = pieza.clone();

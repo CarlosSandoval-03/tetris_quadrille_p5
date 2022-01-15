@@ -10,6 +10,7 @@ const ControladorDOM = {
 		}
 	},
 
+	// Manejo del DOM a traves de JavaScript:
 	// https://platzi.com/tutoriales/1050-programacion-basica/178-mostrar-y-ocultar-div-con-javascript-y-css3/
 	// https://developer.mozilla.org/es/docs/Web/CSS/position
 	divPausa: function (pausa = false, derrota = false) {

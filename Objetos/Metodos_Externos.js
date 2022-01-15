@@ -1,6 +1,6 @@
 const Externo = {
 	// https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-	// Esta funcion excluye al valor maximo
+	// Esta funcion genera un numero aleatorio [min,max)
 	numeroAleatorioEntero: function (min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
 	},
@@ -14,6 +14,7 @@ const Externo = {
 	},
 
 	deteccionDispositivoMovil: function () {
+		// El juego realiza los movimientos a traves del teclado, se envia una alerta sobre compatibilidad
 		// https://codigofuente.io/detectar-dispositivo-movil-con-javascript/
 		if (
 			navigator.userAgent.match(/Android/i) ||

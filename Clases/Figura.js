@@ -1,4 +1,3 @@
-// ? Como mi clase figura aplica en otros juegos
 class Figura extends Tetromino {
 	constructor() {
 		super();
@@ -179,7 +178,8 @@ class Figura extends Tetromino {
 		}
 		Tablero.cambiar(matriz);
 	}
-	// https://objetos.github.io/p5.quadrille.js/docs/demo - Line 23
+	// Aplicacion del framerate para realizar cambios en el canva
+	// https://objetos.github.io/p5.quadrille.js/docs/demo - Linea 23
 	__caidaFigura(frames) {
 		const VELOCIDAD = Math.floor(60 * (1 / this.__nivel));
 		if (frames % VELOCIDAD === 0) {
