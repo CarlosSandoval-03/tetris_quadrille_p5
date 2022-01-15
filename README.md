@@ -65,7 +65,7 @@ Estas son matemáticas y gráficas, como lo pueden ser el ancho de las celdas, c
 |   Flecha Abajo   |      Moverse Abajo       |
 |  Flecha Arriba   |  Rotar hacia la derecha  |
 |        Z         | Rotar hacia la Izquierda |
-|     Espacio      |          Pausa           |
+|     Espacio      |        Hard-Drop         |
 
 ## Referencias
 
