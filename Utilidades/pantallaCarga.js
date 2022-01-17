@@ -1,5 +1,5 @@
 /**
- * Se muestra una pantalla de carga, mientras se realiza la carga de los scripts
+ * Se muestra una pantalla de carga, mientras se realiza la carga de los scripts (decorativo)
  * https://www.youtube.com/watch?v=nq0vAO6SDlI
  */
 window.onload = function () {
