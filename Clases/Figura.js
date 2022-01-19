@@ -1,4 +1,15 @@
+/********************************************************************************************************************
+ * Figura.js
+ * Copyright (c) 2021 Carlos Sandoval
+ * @author Carlos Santiago Sandoval Casallas, https://github.com/CarlosSandoval-03/tetris_quadrille_p5
+ * Released under the terms of the MIT License, refer to: https://opensource.org/licenses/MIT
+ *
+ * JS Docs based on https://github.com/objetos/p5.quadrille.js/blob/main/p5.quadrille.js
+ ********************************************************************************************************************/
 class Figura extends Tetromino {
+	/**
+	 * Se definen posiciones de ambas figuras, sus respectivas cuadriculas e inicializamos el puntaje
+	 */
 	constructor() {
 		super();
 		this._xPos = COORDENADA.origenX;
@@ -10,6 +21,9 @@ class Figura extends Tetromino {
 		this.__nivel = 1;
 	}
 
+	/**
+	 * Construimos los respectivos getters y setters de los atributos de clase
+	 */
 	get xPos() {
 		return this._xPos;
 	}
@@ -55,6 +69,12 @@ class Figura extends Tetromino {
 		this.__nivel = valor;
 	}
 
+	/**
+	 *
+	 * @param {Array} molde es un arreglo que almacena las matrices de ambas figuras
+	 * (la que esta en juego y el fantasma)
+	 * @returns Arreglo de cuadriculas
+	 */
 	__crearFiguras(molde = super.moldeFiguras()) {
 		return [
 			createQuadrille(super.anchoMatriz, molde[0]),
@@ -62,6 +82,9 @@ class Figura extends Tetromino {
 		];
 	}
 
+	/**
+	 * Reestaablecemos la posicion inicial, creamos de nuevo los moldes los aplicamos
+	 */
 	__crearNuevo() {
 		this.xPos = COORDENADA.origenX;
 		this.yPos = COORDENADA.origenY;
@@ -70,19 +93,32 @@ class Figura extends Tetromino {
 		this.fantasma = moldes[1];
 	}
 
+	/**
+	 * Al estar manejando matrices no podemos acceder a la propiedad de tamaños
+	 * que brinda Quadrille, por esa razon usamos metodos externos a la clase y encontramos
+	 * dichas medidas
+	 * Aplicaciones:
+	 * @see __fueraTablero()
+	 */
 	__actualizacionTamanoMatriz() {
 		let temp = this.figuraEnJuego.toMatrix();
 		super.anchoMatriz = Externo.obtenerAnchoMatriz(temp);
 		super.altoMatriz = Externo.obtenerAltoMatriz(temp);
-		let aux = this.fantasma.toMatrix();
-		super.anchoMatriz = Externo.obtenerAnchoMatriz(aux);
-		super.altoMatriz = Externo.obtenerAltoMatriz(aux);
 	}
 
+	/**
+	 * Guardamos la pieza en la cuadricula del tablero
+	 * @see Tablero.js
+	 */
 	__almacenarPieza() {
 		Tablero.guardadoPieza(this.figuraEnJuego, { y: this.yPos, x: this.xPos });
 	}
 
+	/**
+	 * Esta funcion toma en cuenta el tamaño del tablero, la posicion actual de la
+	 * figura y su tamaño, en base a esto define cuando la pieza sale del tablero
+	 * @returns Booleano que identifica si la pieza sale del tablero
+	 */
 	__fueraTablero() {
 		const indicesTablero = [VAR_MATH.columnas + 1, VAR_MATH.filas + 1];
 		if (
@@ -94,6 +130,10 @@ class Figura extends Tetromino {
 		}
 		return false;
 	}
+	/**
+	 * Realizamos una comparacion AND entre la pieza y el tablero, si esta
+	 * posee un numero diferente a 0, deducimos que hay un choque o colision
+	 */
 	__colision() {
 		let posicion = {
 			y: this.yPos,
@@ -112,6 +152,10 @@ class Figura extends Tetromino {
 		}
 		return false;
 	}
+	/**
+	 * Esta funcion nos facilita el proceso de evaluar la posicion de una figura
+	 * @returns Booleano sobre la correcta posicion de la figura
+	 */
 	__verificacionPosicionValida() {
 		if (!this.__fueraTablero() && !this.__colision()) {
 			return true;
@@ -119,6 +163,10 @@ class Figura extends Tetromino {
 		return false;
 	}
 
+	/**
+	 * Estas funciones realizan el movimiento descrito, en caso de ser invalido
+	 * ejerce el movimiento opuesto
+	 */
 	izquierda() {
 		this.xPos--;
 		if (!this.__verificacionPosicionValida()) {
@@ -131,6 +179,11 @@ class Figura extends Tetromino {
 			this.izquierda();
 		}
 	}
+	/**
+	 * Al ser un movimiento invalido en el Tetris, cuando se llama a esta funcion
+	 * podemos establecer que existe un choque, asi que almacenamos la pieza,
+	 * limpiamos el tablero si es posible y creamos una nueva figura
+	 */
 	__arriba() {
 		this.yPos--;
 		this.__almacenarPieza();
@@ -143,6 +196,9 @@ class Figura extends Tetromino {
 			this.__arriba();
 		}
 	}
+	/**
+	 * Caida inmediata
+	 */
 	hardDrop() {
 		while (this.__verificacionPosicionValida()) {
 			this.yPos++;
@@ -169,6 +225,11 @@ class Figura extends Tetromino {
 		}
 	}
 
+	/**
+	 *
+	 * @param {number} fila indica desde que parte del tablero se debe iniciar
+	 * la busqueda de figuras que deben caer
+	 */
 	__caidaTablero(fila) {
 		let inicioRecorrido = fila,
 			tablero = Tablero.obtener(),
@@ -181,6 +242,7 @@ class Figura extends Tetromino {
 	// Aplicacion del framerate para realizar cambios en el canva
 	// https://objetos.github.io/p5.quadrille.js/docs/demo - Linea 23
 	__caidaFigura(frames) {
+		// Operacion que permite una mayor caida respecto al nivel
 		const VELOCIDAD = Math.floor(60 * (1 / this.__nivel));
 		if (frames % VELOCIDAD === 0) {
 			this.abajo();
@@ -188,6 +250,12 @@ class Figura extends Tetromino {
 		this.__cambioNivel();
 	}
 
+	/**
+	 * El fantasma posee caracteristicas distintas, debido a que debe estar en
+	 * constante "Hard drop" para mostrar el lugar de caida, por esta razon
+	 * se redefinen los movimientos validos
+	 * @returns booleano que indica si el movimiento es valido
+	 */
 	__posicionValidaFantasma() {
 		if (!this.__fueraFantasma() && !this.__colisionFantasma()) {
 			return true;
@@ -227,6 +295,10 @@ class Figura extends Tetromino {
 		this.yFantasmaPos--;
 	}
 
+	/**
+	 * Realiza la busqueda de una fila completa y limpia las respectivas filas
+	 * @see Tablero.js
+	 */
 	__limpiezalinea() {
 		let contador = 0;
 		for (let i = 0; i < VAR_MATH.filas; i++) {
@@ -240,6 +312,11 @@ class Figura extends Tetromino {
 		this.__aumentarPuntaje(contador);
 	}
 
+	/**
+	 * Cada linea da 100 puntos, pero existe un bonus en base a cuantas lineas se
+	 * borraron en combo
+	 * @param {number} lineasBorradas entero positivo de lineas limpiadas
+	 */
 	__aumentarPuntaje(lineasBorradas = 0) {
 		const puntosLinea = 100,
 			denominadorFraccionPorcentaje = 10;
@@ -249,6 +326,9 @@ class Figura extends Tetromino {
 			puntajeTemporal * (lineasBorradas / denominadorFraccionPorcentaje);
 	}
 
+	/**
+	 * Cada mil puntos aumenta el nivel, aumentando asi la velocidad de caida
+	 */
 	__cambioNivel() {
 		const SIMPLIFICACION_A_DECENAS = 1000,
 			EVITAR_NIVEL_CERO = 1;
@@ -290,6 +370,7 @@ class Figura extends Tetromino {
 			}
 		}
 	}
+	// Si la primera fila tiene algun elemento se considera como perdido el juego
 	__perder() {
 		let mapa = Tablero.obtener();
 		mapa = mapa.toMatrix();

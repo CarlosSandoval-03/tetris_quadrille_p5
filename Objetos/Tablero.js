@@ -1,19 +1,19 @@
 // Manejo de tablero
 /* La variable de Tablero ya fue definida en sketch.js */
-class Tablero {
+const Tablero = {
 	// Quadrille.JS
 	// https://objetos.github.io/p5.quadrille.js/docs/demo
-	static guardadoPieza(pieza, { y, x }) {
+	guardadoPieza(pieza, { y, x }) {
 		let clon = pieza.clone();
 		tablero = Quadrille.OR(tablero, clon, y, x);
-	}
+	},
 
-	static comparacionPieza(pieza, { y, x }) {
+	comparacionPieza(pieza, { y, x }) {
 		let mapa = Quadrille.AND(tablero, pieza.clone(), y, x);
 		return mapa.toMatrix();
-	}
+	},
 
-	static busquedaFila() {
+	busquedaFila() {
 		let matriz = tablero.toMatrix();
 		let ancho = matriz[0].length,
 			linea = 0;
@@ -31,17 +31,17 @@ class Tablero {
 			}
 		}
 		return undefined;
-	}
+	},
 
-	static limpiarLinea(linea) {
+	limpiarLinea(linea) {
 		tablero.clear(linea);
-	}
+	},
 
-	static cambiar(matriz) {
+	cambiar(matriz) {
 		tablero = createQuadrille(matriz);
-	}
+	},
 
-	static obtener() {
+	obtener() {
 		return tablero.clone();
-	}
-}
+	},
+};
